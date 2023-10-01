@@ -1,0 +1,21 @@
+{
+  "name": "스텔라이브 사진 갤러리 업로더",
+  "description": "스텔라이브 사진 갤러리 사이트에 이미지를 업로드 합니다.",
+  "version": "1.0",
+  "icons": {
+    "32": "icons/32.png",
+    "72": "icons/72.png",
+    "128": "icons/128.png",
+    "512": "icons/512.png"
+  },
+  "permissions": ["contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": ["*://*/popup.html"],
+    "js": ["popup.js"],
+    "run_at": "document_start"
+  }],
+  "manifest_version": 3
+}
