@@ -30,6 +30,10 @@ chrome.runtime.sendMessage(
         let extIdx = type.lastIndexOf("/")
         file = new File([blob], "name." + type.slice(extIdx + 1), {type: type});
   
+
+        var loding_div = document.getElementById("div_img_loading");
+        loding_div.style.display = "none";
+
         var img = document.createElement("img")
         img.style.id = "upload_img"
         img.style.width = "100%"
