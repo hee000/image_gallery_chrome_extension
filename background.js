@@ -5,7 +5,7 @@ let data = null
 
 async function genericOnClick(info) {
   data = info
-  chrome.windows.create({url:"popup.html", type:"popup", height:600, width:400});
+  chrome.windows.create({url:"popup.html", type:"popup", height:600, width:450});
 }
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
