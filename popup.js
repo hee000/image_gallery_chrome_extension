@@ -14,21 +14,6 @@ chrome.runtime.sendMessage(
     fetch(url, {
       method: 'GET',
       headers: {
-        // 'Authorization': "Basic sdasd", 
-        // "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-        // "Accept-Encoding" : "gzip, deflate, br",
-        // "Accept-Language" : "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-        // "Cache-Control": "no-cache",
-        // "Connection" : "keep-alive",
-        // "Host" : "dcimg8.dcinside.co.kr",
-        // "Pragma": "no-cache",
-        // "Referer": info.pageUrl,
-        // "Sec-Ch-Ua": `"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"`,
-        // "Sec-Ch-Ua-Mobile": "?0",
-        // "Sec-Ch-Ua-Platform": '"macOS"',
-        // "Sec-Fetch-Dest": "image",
-        // "Sec-Fetch-Mode": "no-cors",
-        // "Sec-Fetch-Site": "cross-site",
         "Content-type": "image",
         "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
       },
@@ -45,8 +30,6 @@ chrome.runtime.sendMessage(
         let extIdx = type.lastIndexOf("/")
         file = new File([blob], "name." + type.slice(extIdx + 1), {type: type});
   
-        // var img = document.getElementById("upload_img")
-        // img.src = window.URL.createObjectURL(blob)
         var img = document.createElement("img")
         img.style.id = "upload_img"
         img.style.width = "100%"
@@ -137,6 +120,25 @@ function submit() {
   formData.set('hashtag', JSON.stringify([hashTagValue]));
   formData.set('tag', JSON.stringify([tagArr]));
   formData.set('password', document.getElementById("password").value);
+
+  // 업로딩 표시
+  let div = document.createElement("div");
+  div.style.position = "absolute";
+  div.style.width = "100%";
+  div.style.height = "100%";
+  div.style.left = 0;
+  div.style.top = 0;
+  div.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  div.style.zIndex = "200";
+  div.style.display = "flex";
+  let div2 = document.createElement("div");
+  div2.style.margin = "auto";
+  let span = document.createElement("span");
+  span.append("업로딩..")
+  span.style.color = "white"
+  div2.appendChild(span)
+  div.appendChild(div2)
+  document.body.appendChild(div)
 
   document.getElementById("submit").disabled = true
   fetch(`https://nenekomashiro.com/file/${code}/upload/`, {
